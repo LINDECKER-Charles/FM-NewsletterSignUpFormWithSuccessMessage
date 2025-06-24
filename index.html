@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  
+  <!-- Meta SEO principales -->
+  <meta name="description" content="Une application interactive pour explorer les pays du monde entier : drapeaux, capitales, populations et plus encore, avec un thème clair/sombre. Développée avec l'API REST Countries.">
+  <meta name="keywords" content="REST Countries API, exploration des pays, drapeaux, capitales, mode sombre, JavaScript, Frontend Mentor, switch thème, carte du monde">
+  <meta name="author" content="Charles LINDECKER">
+
+  <!-- Open Graph pour le partage sur les réseaux sociaux -->
+  <meta property="og:title" content="REST Countries Explorer – Thème clair/sombre">
+  <meta property="og:description" content="Découvrez une carte interactive des pays du monde avec drapeaux, données géopolitiques et un switch thème clair/sombre. Projet Frontend Mentor.">
+  <meta property="og:image" content="URL de ton image de prévisualisation ici (ex: /assets/preview.jpg)">
+  <meta property="og:url" content="URL de ton site déployé ici">
+  <meta property="og:type" content="website">
+
+  <!-- Personnalisation de l’apparence navigateur -->
+  <meta name="theme-color" content="#202c37">
+
+
+
+  <title>Frontend Mentor | Newsletter sign-up form with success message</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-mYz1z8...==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            red: {
+              500: 'hsl(4, 100%, 67%)', // Couleur principale
+            },
+            blue: {
+              800: 'hsl(234, 29%, 20%)', // Titre/Background foncé
+              700: 'hsl(235, 18%, 26%)', // Cartes ou UI secondaire
+            },
+            grey: {
+              500: 'hsl(0, 0%, 58%)', // Texte secondaire
+            },
+            white: 'hsl(0, 0%, 100%)', // Texte ou fond clair
+          },
+          fontFamily: {
+            roboto: ['Roboto', 'sans-serif'],
+          },
+          fontSize: {
+            base: '16px',
+            xxs: '12px'
+          },
+        }
+      }
+    }
+  </script>
+</head>
+<body class=" flex items-center justify-center min-h-screen bg-blue-800 text-blue-800">
+  <main class=" flex flex-col justify-center items-center">
+    <section id="forumaire" class=" flex flex-row justify-center gap-x-4 bg-white p-6 rounded-3xl w-2/3">
+      <article class=" w-1/2 flex flex-col justify-center items-start p-8 ">
+        <h1 class="text-5xl font-bold mb-2">Stay updated!</h1>
+        <p class=" my-4">Join 60,000+ product managers receiving monthly updates on:</p>
+        <ul class=" mb-4 space-y-2">
+          <li class=" flex flex-row items-center gap-4"><img src="assets/images/icon-list.svg" alt="Check dans une gommet orange">Product discovery and building what matters</li>
+          <li class=" flex flex-row items-center gap-4"><img src="assets/images/icon-list.svg" alt="Check dans une gommet orange">Measuring to ensure updates are a success</li>
+          <li class=" flex flex-row items-center gap-4"><img src="assets/images/icon-list.svg" alt="Check dans une gommet orange">And much more!</li>
+        </ul>
+        <form action="" novalidate>
+          <div class=" flex flex-row justify-between mb-1">
+            <label class="block text-xxs font-bold mb-1" for="email-input">Email address</label>
+            <div id="error" class=" text-red-500 text-xxs font-bold"></div>
+          </div>
+          <input type="email" name="email-input" id="email-input" placeholder="email@company.com"
+          class=" px-5 py-3 border border-grey rounded-lg w-full">
+          <button type="submit" class=" font-bold text-center w-full mt-4 bg-blue-800 text-white py-3 rounded-lg">Subscribe to monthly newsletter</button>
+        </form>
+      </article>
+      <aside class=" w-1/2">
+        <img src="assets/images/illustration-sign-up-desktop.svg" 
+        alt="Illusatrtion d'un ecran d'ordinateur"
+        class=" w-full h-full object-cover hidden lg:block ">
+        <img src="assets/images/illustration-sign-up-mobile.svg" 
+        alt="Illusatrtion d'un ecran d'ordinateur"
+        class=" w-full h-full object-cover md:hidden">
+        <img src="assets/images/illustration-sign-up-tablet.svg" 
+        alt="Illusatrtion d'un ecran d'ordinateur"
+        class=" w-full h-full object-cover hidden md:block lg:hidden">
+      </aside>
+    </section>
+    <section id="subscribe" class=" hidden flex-col justify-center bg-white p-10 rounded-3xl px-16 w-2/4">
+      <img src="assets/images/icon-list.svg" alt="Check dans une gommet orange" class=" w-[50px] ">
+      <h2 class=" font-bold text-5xl my-6">Thanks for subscribing!</h2>
+
+      <p>A confirmation email has been sent to <span id="user-email" class=" font-bold"></span>. 
+      Please open it and click the button inside to confirm your subscription.</p>
+
+      <button class="w-full bg-blue-800 text-white py-4 rounded-lg mt-10">Dismiss message</button>
+    </section>
+  </main>
+  
+  <footer>
+    <div class="sr-only text-center text-xs">
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank" class="text-blue-500">Frontend Mentor</a>. 
+      Coded by <a href="https://www.linkedin.com/in/charles-lindecker/" class="text-blue-500">Charles LINDECKER</a>.
+    </div>
+  </footer>
+  <script defer>
+    const error = document.getElementById("error");
+    const emailInput = document.getElementById("email-input");
+    document.querySelector("form").addEventListener("submit", function (e) {
+    e.preventDefault(); // Empêche la soumission
+
+    const email = document.getElementById("email-input").value.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(email)) {
+      error.innerHTML = "Valid email required";
+      emailInput.classList.add("text-red-500");
+      emailInput.classList.add("border-red-500");
+      emailInput.classList.add("bg-red-100");
+      return;
+    }
+
+    const subscribe = document.getElementById("subscribe");
+    document.getElementById("forumaire").classList.add("hidden");
+    subscribe.classList.remove("hidden");
+    subscribe.classList.add("flex");
+    document.getElementById("user-email").innerHTML = email;
+  });
+</script>
+</body>
+</html>
