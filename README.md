@@ -29,8 +29,8 @@ This is a solution to the [Newsletter sign-up form with success message challeng
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://github.com/LINDECKER-Charles/FM-RESTCountriesAPIWithColorThemeSwitcher)
-- Live Site URL: [Add live site URL here](https://fm-rest-countries-api-with-color-th.vercel.app)
+- Solution URL: [Add solution URL here](https://github.com/LINDECKER-Charles/FM-NewsletterSignUpFormWithSuccessMessage)
+- Live Site URL: [Add live site URL here](https://fm-newsletter-sign-up-form-with-suc.vercel.app)
 
 ## My process
 
